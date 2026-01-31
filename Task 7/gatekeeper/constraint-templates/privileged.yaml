@@ -1,0 +1,32 @@
+apiVersion: templates.gatekeeper.sh/v1beta1
+kind: ConstraintTemplate
+metadata:
+  name: k8sprivcontainers
+spec:
+  crd:
+    spec:
+      names:
+        kind: K8sPrivContainers
+      validation:
+        openAPIV3Schema:
+          type: object
+          properties:
+            message:
+              type: string
+              default: "Privileged containers are not allowed"
+  targets:
+    - target: admission.k8s.gatekeeper.sh
+      rego: |
+        package k8sprivcontainers
+        
+        violation[{"msg": msg}] {
+          container := input.review.object.spec.containers[_]
+          container.securityContext.privileged == true
+          msg := sprintf("Privileged containers are not allowed: %v", [container.name])
+        }
+        
+        violation[{"msg": msg}] {
+          container := input.review.object.spec.initContainers[_]
+          container.securityContext.privileged == true
+          msg := sprintf("Privileged init containers are not allowed: %v", [container.name])
+        }

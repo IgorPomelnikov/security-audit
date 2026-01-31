@@ -1,0 +1,230 @@
+#finance
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  namespace: finance
+  name: finance-admin-binding
+subjects:
+- kind: Group
+  name: finance-admin 
+  apiGroup: rbac.authorization.k8s.io
+roleRef:
+  kind: ClusterRole
+  name: admins 
+  apiGroup: rbac.authorization.k8s.io
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  namespace: finance
+  name: finance-secret-access-binding
+subjects:
+- kind: Group
+  name: finance-secret-access 
+  apiGroup: rbac.authorization.k8s.io
+roleRef:
+  kind: ClusterRole
+  name: secret-access
+  apiGroup: rbac.authorization.k8s.io
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  namespace: finance
+  name: finance-conf-binding
+subjects:
+- kind: Group
+  name: finance-conf 
+  apiGroup: rbac.authorization.k8s.io
+roleRef:
+  kind: ClusterRole
+  name: conf
+  apiGroup: rbac.authorization.k8s.io
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  namespace: finance
+  name: finance-watch-binding
+subjects:
+- kind: Group
+  name: finance-watch 
+  apiGroup: rbac.authorization.k8s.io
+roleRef:
+  kind: ClusterRole
+  name: watch
+  apiGroup: rbac.authorization.k8s.io
+---
+
+#client
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  namespace: client
+  name: client-admin-binding
+subjects:
+- kind: Group
+  name: client-admin 
+  apiGroup: rbac.authorization.k8s.io
+roleRef:
+  kind: ClusterRole
+  name: admins 
+  apiGroup: rbac.authorization.k8s.io
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  namespace: client
+  name: client-secret-access-binding
+subjects:
+- kind: Group
+  name: client-secret-access 
+  apiGroup: rbac.authorization.k8s.io
+roleRef:
+  kind: ClusterRole
+  name: secret-access
+  apiGroup: rbac.authorization.k8s.io
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  namespace: client
+  name: client-conf-binding
+subjects:
+- kind: Group
+  name: client-conf 
+  apiGroup: rbac.authorization.k8s.io
+roleRef:
+  kind: ClusterRole
+  name: conf
+  apiGroup: rbac.authorization.k8s.io
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  namespace: client
+  name: client-watch-binding
+subjects:
+- kind: Group
+  name: client-watch 
+  apiGroup: rbac.authorization.k8s.io
+roleRef:
+  kind: ClusterRole
+  name: watch
+  apiGroup: rbac.authorization.k8s.io
+---
+
+#housing
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  namespace: housing
+  name: housing-admin-binding
+subjects:
+- kind: Group
+  name: housing-admin 
+  apiGroup: rbac.authorization.k8s.io
+roleRef:
+  kind: ClusterRole
+  name: admins 
+  apiGroup: rbac.authorization.k8s.io
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  namespace: housing
+  name: housing-secret-access-binding
+subjects:
+- kind: Group
+  name: housing-secret-access 
+  apiGroup: rbac.authorization.k8s.io
+roleRef:
+  kind: ClusterRole
+  name: secret-access
+  apiGroup: rbac.authorization.k8s.io
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  namespace: housing
+  name: housing-conf-binding
+subjects:
+- kind: Group
+  name: housing-conf 
+  apiGroup: rbac.authorization.k8s.io
+roleRef:
+  kind: ClusterRole
+  name: conf
+  apiGroup: rbac.authorization.k8s.io
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  namespace: housing
+  name: housing-watch-binding
+subjects:
+- kind: Group
+  name: housing-watch 
+  apiGroup: rbac.authorization.k8s.io
+roleRef:
+  kind: ClusterRole
+  name: watch
+  apiGroup: rbac.authorization.k8s.io
+---
+
+#bi
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  namespace: bi
+  name: bi-admin-binding
+subjects:
+- kind: Group
+  name: bi-admin 
+  apiGroup: rbac.authorization.k8s.io
+roleRef:
+  kind: ClusterRole
+  name: admins 
+  apiGroup: rbac.authorization.k8s.io
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  namespace: bi
+  name: bi-secret-access-binding
+subjects:
+- kind: Group
+  name: bi-secret-access 
+  apiGroup: rbac.authorization.k8s.io
+roleRef:
+  kind: ClusterRole
+  name: secret-access
+  apiGroup: rbac.authorization.k8s.io
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  namespace: bi
+  name: bi-conf-binding
+subjects:
+- kind: Group
+  name: bi-conf 
+  apiGroup: rbac.authorization.k8s.io
+roleRef:
+  kind: ClusterRole
+  name: conf
+  apiGroup: rbac.authorization.k8s.io
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  namespace: bi
+  name: bi-watch-binding
+subjects:
+- kind: Group
+  name: bi-watch 
+  apiGroup: rbac.authorization.k8s.io
+roleRef:
+  kind: ClusterRole
+  name: watch
+  apiGroup: rbac.authorization.k8s.io

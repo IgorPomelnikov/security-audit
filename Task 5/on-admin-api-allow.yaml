@@ -1,0 +1,182 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: default-deny-for-role-pods
+  namespace: network-task
+spec:
+  podSelector:
+    matchExpressions:
+      - key: role
+        operator: Exists
+  policyTypes:
+    - Ingress
+    - Egress
+  ingress: []
+  egress: []
+
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: allow-frontend-to-backend
+  namespace: network-task
+spec:
+  podSelector:
+    matchLabels:
+      role: back-end-api
+  policyTypes:
+    - Ingress
+  ingress:
+    - from:
+        - podSelector:
+            matchLabels:
+              role: front-end
+      ports:
+        - protocol: TCP
+          port: 80
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: allow-admin-frontend-ingress-from-admin-backend
+  namespace: network-task
+spec:
+  podSelector:
+    matchLabels:
+      role: admin-front-end
+  policyTypes:
+    - Ingress
+  ingress:
+    - from:
+        - podSelector:
+            matchLabels:
+              role: admin-back-end-api
+      ports:
+        - protocol: TCP
+          port: 80
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: allow-admin-frontend-egress-to-admin-backend
+  namespace: network-task
+spec:
+  podSelector:
+    matchLabels:
+      role: admin-front-end
+  policyTypes:
+    - Egress
+  egress:
+    - to:
+        - podSelector:
+            matchLabels:
+              role: admin-back-end-api
+      ports:
+        - protocol: TCP
+          port: 80
+
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: allow-backend-egress-to-frontend
+  namespace: network-task
+spec:
+  podSelector:
+    matchLabels:
+      role: back-end-api
+  policyTypes:
+    - Egress
+  egress:
+    - to:
+        - podSelector:
+            matchLabels:
+              role: front-end
+      ports:
+        - protocol: TCP
+          port: 80
+
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: allow-frontend-egress-to-backend
+  namespace: network-task
+spec:
+  podSelector:
+    matchLabels:
+      role: front-end
+  policyTypes:
+    - Egress
+  egress:
+    - to:
+        - podSelector:
+            matchLabels:
+              role: back-end-api
+      ports:
+        - protocol: TCP
+          port: 80
+
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: allow-backend-ingress-from-frontend
+  namespace: network-task
+spec:
+  podSelector:
+    matchLabels:
+      role: front-end
+  policyTypes:
+    - Ingress
+  ingress:
+    - from:
+        - podSelector:
+            matchLabels:
+              role: back-end-api
+      ports:
+        - protocol: TCP
+          port: 80
+
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: allow-admin-frontend-to-admin-backend
+  namespace: network-task
+spec:
+  podSelector:
+    matchLabels:
+      role: admin-back-end-api
+  policyTypes:
+    - Ingress
+  ingress:
+    - from:
+        - podSelector:
+            matchLabels:
+              role: admin-front-end
+      ports:
+        - protocol: TCP
+          port: 80
+
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: allow-admin-backend-egress-to-admin-frontend
+  namespace: network-task
+spec:
+  podSelector:
+    matchLabels:
+      role: admin-back-end-api
+  policyTypes:
+    - Egress
+  egress:
+    - to:
+        - podSelector:
+            matchLabels:
+              role: admin-front-end
+      ports:
+        - protocol: TCP
+          port: 80
+

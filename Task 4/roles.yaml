@@ -1,0 +1,43 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: admins
+rules:
+- apiGroups:  ["", "apps", "batch", "autoscaling", "extensions", "networking.k8s.io","rbac.authorization.k8s.io"]
+  resources: ["*"]
+  verbs: ["*"]
+
+---
+
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: secrets-access
+rules:
+- apiGroups: [""]
+  resources: ["secrets",]
+  verbs: ["get","list","watch","create","update","patch","delete"]
+
+---
+
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: conf
+rules:
+- apiGroups: ["", "apps", "batch", "autoscaling", "extensions", "networking.k8s.io"]
+  resources: ["pods","pods/log","deployments","statefulsets","daemonsets","replicasets","jobs","cronjobs","services","endpoints","ingresses","configmaps","events","horizontalpodautoscalers"]
+  verbs: ["get","list","watch","create","update","patch","delete"]
+
+---
+
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: watch
+rules:
+- apiGroups: [""]
+  resources: ["pods", "pods","deployments"]
+  verbs: ["get", "watch", "list"]
+
+
